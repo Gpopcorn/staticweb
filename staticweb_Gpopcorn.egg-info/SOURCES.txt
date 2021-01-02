@@ -1,0 +1,8 @@
+README.md
+setup.py
+staticweb/StaticWeb.py
+staticweb/__init__.py
+staticweb_Gpopcorn.egg-info/PKG-INFO
+staticweb_Gpopcorn.egg-info/SOURCES.txt
+staticweb_Gpopcorn.egg-info/dependency_links.txt
+staticweb_Gpopcorn.egg-info/top_level.txt
