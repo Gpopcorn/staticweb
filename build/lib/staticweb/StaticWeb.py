@@ -3,18 +3,21 @@ import sys
 import os
 
 class WebServer:
+    path_templates = []
+    path_urls = []
+
     def __init__(self, ip, port):
-        self.mainpage = '/mainpage.html'
-        self.page404 = '/404page.html'
+        self.page404 = ''
 
         self.ip = ip
         self.port = port
 
-    def SetMainPage(self, page):
-        self.mainpage = page
-
     def Set404Page(self, page):
         self.page404 = page
+
+    def SetPath(self, template, url):
+        self.path_urls.append(url)
+        self.path_templates.append(template)
 
     def MainLoop(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -34,11 +37,13 @@ class WebServer:
                 except IndexError:
                     continue
 
-                if url == '/':
-                    url = '/' + self.mainpage
-
                 try:
-                    htmlfile = open('templates' + url)
+                    if any(url in s for s in self.path_urls):
+                        templatenumber = self.path_urls.index(url)
+                        htmlfile = self.path_templates[templatenumber]
+                    else:
+                        htmlfile = open('templates' + url)
+
                     htmlcontent = htmlfile.read()
                     htmlfile.close()
 
