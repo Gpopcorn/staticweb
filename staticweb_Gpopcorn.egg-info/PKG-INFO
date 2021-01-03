@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: staticweb-Gpopcorn
-Version: 1.0.0
+Version: 1.1.0
 Summary: An easy way to get started with static Python web backend.
 Home-page: https://github.com/Gpopcorn/staticweb
 Author: Gpopcorn
@@ -19,7 +19,7 @@ Description: # StaticWeb Description
         ```python
         from staticweb import StaticWeb
         
-        webserver = staticweb.WebServer(staticweb.LocalHost(), 1234)
+        webserver = StaticWeb.WebServer(StaticWeb.LocalHost(), 1234)
         webserver.MainLoop()
         ```
         Create a new folder called `templates` (must be named this or it won't work), and create a file called `helloworld.html`. 
