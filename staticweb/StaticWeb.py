@@ -40,7 +40,7 @@ class WebServer:
                 try:
                     if any(url in s for s in self.path_urls):
                         templatenumber = self.path_urls.index(url)
-                        htmlfile = self.path_templates[templatenumber]
+                        htmlfile = open(self.path_templates[templatenumber])
                     else:
                         htmlfile = open('templates' + url)
 
