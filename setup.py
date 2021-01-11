@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="staticweb-Gpopcorn",
-    version="1.1.1",
+    version="1.0.0.1",
     author="Gpopcorn",
     description="An easy way to get started with static Python web backend.",
     long_description=long_description,
