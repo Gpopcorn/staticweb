@@ -3,21 +3,18 @@ import sys
 import os
 
 class WebServer:
-    path_templates = []
-    path_urls = []
-
     def __init__(self, ip, port):
-        self.page404 = ''
+        self.mainpage = '/mainpage.html'
+        self.page404 = '/404page.html'
 
         self.ip = ip
         self.port = port
 
+    def SetMainPage(self, page):
+        self.mainpage = page
+
     def Set404Page(self, page):
         self.page404 = page
-
-    def SetPath(self, template, url):
-        self.path_urls.append(url)
-        self.path_templates.append(template)
 
     def MainLoop(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -37,13 +34,11 @@ class WebServer:
                 except IndexError:
                     continue
 
-                try:
-                    if any(url in s for s in self.path_urls):
-                        templatenumber = self.path_urls.index(url)
-                        htmlfile = open(self.path_templates[templatenumber])
-                    else:
-                        htmlfile = open('templates' + url)
+                if url == '/':
+                    url = '/' + self.mainpage
 
+                try:
+                    htmlfile = open('templates' + url)
                     htmlcontent = htmlfile.read()
                     htmlfile.close()
 
@@ -61,7 +56,7 @@ class WebServer:
                         except FileNotFoundError:
                             response = 'HTTP/1.0 404 NOT FOUND\n\n<h1>404 Page Not Found</h1>'
                     print(f'[404 ERROR] 404 error at url: {url}')
-                
+
                 cs.sendall(response.encode())
                 cs.close()
             except KeyboardInterrupt:
@@ -74,4 +69,4 @@ class WebServer:
         s.close()
 
 def LocalHost():
-    return '0.0.0.0'
+    return '0.0.0.0' 
