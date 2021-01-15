@@ -12,7 +12,7 @@ Type in the file the following:
 ```python
 from staticweb import StaticWeb
 
-webserver = staticweb.WebServer(staticweb.LocalHost(), 1234)
+webserver = StaticWeb.WebServer(StaticWeb.LocalHost(), 1234)
 webserver.MainLoop()
 ```
 Create a new folder called `templates` (must be named this or it won't work), and create a file called `helloworld.html`. 
